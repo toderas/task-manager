@@ -1,20 +1,27 @@
-{% extends 'base.html' %} 
-{% block content %}
-<h3>Add Task</h3>
+{% extends 'base.html'%} {% block content %}
 <div class="row">
-    <form  action="" method="POST" class="col s12">
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix">First Name</label>
+    <ul class="collapsible" data-collapsible="accordion">
+        {% for task in tasks %}
+        <li>
+            <div class="collapsible-header">
+                <div class="col s3">
+                    <i class="material-icons">expand_more</i>
+                    <a href="{{url_for('delete_task', task_id=task._id)}}" class="waves-effect waves-light btn btn_small">Done</a>
+                    <a href="{{url_for('edit_task', task_id=task._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                    
+                </div>
+                <div class=" task_header col s9">
+                    <strong>{{task.task_name}}</strong> - {{task.due_date}}
+                </div>
             </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">phone</i>
-                <input id="icon_telephone" type="tel" class="validate">
-                <label for="icon_telephone">Telephone</label>
+            <div class="collapsible-body">
+                <span>
+                {{task.task_description}} 
+            </span>
             </div>
-        </div>
-    </form>
+        </li>
+        {% endfor %}
+
+    </ul>
 </div>
 {% endblock %}
