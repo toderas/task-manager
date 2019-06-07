@@ -98,8 +98,12 @@ def insert_category():
 def add_category():
     return render_template('addcategory.html')
 
+host = 'localhost' 
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+    app.run(host='0.0.0.0', port='8080')
+    app.debug = True
+    
+    
+  #  port = int(os.environ.get("PORT", 8081))
+   # app.run(host=host, port=port)
